@@ -1,4 +1,4 @@
-# GENETIC_ALGORITHM
+# GENETIC ALGORITHM
 # DESCRIPTION:
 The genetic algorithm (GA) here is understood as an extension to weighted gene co-expression
 network analysis (WGCNA) by Peter Langfelder and Steve Horvath (BMC Bioinformatics, 2008, 9:559).
