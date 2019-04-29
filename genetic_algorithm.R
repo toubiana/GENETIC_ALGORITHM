@@ -1,68 +1,3 @@
-#/
-## GENETIC ALGORITHM
-## AUTHOR: David Toubiana
-## email: dtoubiana@ucdavis.edu
-## SHORT DESCRIPTION: Using the genetic algorithm to test a set of genes which correlate the highest
-## to trait of interest
-#/
-
-#/
-## ----------------------------------------------DISCLAIMER----------------------------------------------------##
-## This SOFTWARE PRODUCT is provided by THE PROVIDER "as is" and "with all faults."
-## THE PROVIDER makes no representations or warranties of any kind concerning the safety,
-## suitability, lack of viruses, inaccuracies, typographical errors, or other harmful
-## components of this SOFTWARE PRODUCT. There are inherent dangers in the use of any software,
-## and you are solely responsible for determining whether this SOFTWARE PRODUCT is compatible
-## with your equipment and other software installed on your equipment.
-## You are also solely responsible for the protection of your equipment and backup of your data,
-## and THE PROVIDER will not be liable for any damages you may suffer in connection with using,
-## modifying, or distributing this SOFTWARE PRODUCT.
-## ---------------------------------------------DISCLAIMER END--------------------------------------------------##
-#/
-
-#/
-##----------------------------------------------DESCRIPTION-----------------------------------------------------##
-## the genetic algorithm (GA) here is understood as an extension to weighted gene co-expression
-## network analysis (WGCNA) by Peter Langfelder and Steve Horvath (BMC Bioinformatics, 2008, 9:559).
-## whereby the genes expression data corresponding to the genes identified by WGCNA as gene modules
-## is provided to GA as a parameter as well as the trait of interest.
-## The GA optimizes the gene module to trait relationship by gradually increasing the correlation
-## between the trait and a subset of genes of the gene module
-## 1.) It does so by creating an inital population of chromosomes, which are binary vectors of length gene
-## module. The values within a chromosome are set randomly to '1' or '0' goverened by the parameter number.of.genes.
-## For each chromosome an expression matrix is created, where the values within the vector are set to '1'.
-## 2.) As the next step the fitness value for each expression matrix is determined. For that the 1st principal
-## component of each epxression matrix is computed and then correlated (Pearson correlation) to the trait
-## of interest. 
-## 3.) Chromosomes with a higher fitness value have greater chances to contribute to the next generation. The next
-## generation is generated via a recombination event, where chromosome_father x chromosome_mother. The recombination
-## event is performed at a random location/locus L of the chromosome, so that chromosome_father[1:L] + 
-## chromosome_mother[L+1:length(chromosome_mother)] result in chromosome_offspring.
-## 4.) As the last step mutation events can occur randomly at each position of the chromosome_offspring flipping 
-## the value from '0' to '1' or from '1' to '0', respectively
-## Then the GA is reiterated. The GA is repeated for n generations.
-## For a full description of the GA, we refer the user to the accompanying publication.
-##----------------------------------------------DESCRIPTION END-------------------------------------------------##
-#/ 
-
-#/
-## ------------------------------------------------PARAMETERS---------------------------------------------------##
-## data: a dataset containing gene expression data
-## population.size: the number of individuals (here chromosomes) the population is composed of
-## number.of.genes: the number of genes that should be on the chromosome in the initial population
-## mutation.rate: the chance for a mutation to occur on either of the cells/genes in the chromosome vector
-## the mutation changes the value of 0 to 1 and 1 to 0
-## crossover.events: during the reproduction phase the individual chromosomes of the father and mother
-## will crossover up to the times specified by crossover.events
-## generations: how many generations should be simulated to improve fitness
-## traits: contains the other traits the genes will be correlated to
-## stats: stats is an optional parameter that will create a file containing statisics about the GA
-## run in real time. If a file is defined, the statistics will be written to it
-## iteration: iteration is associated with parameter stats. It is adivsable to run the GA for several
-## iterations. If the GA is run with multiple iterations only one stats file will be created
-## ----------------------------------------------PARAMETERS END--------------------------------------------------##
-#/
-
 # License
 # 
 # The following license governs the use of the source code for GENETIC_ALGORIHM in academic and educational environments. 
@@ -78,22 +13,22 @@
 # 
 # This license contains the terms and conditions of using the source code for GENETIC_ALGORIHM in noncommercial settings: at academic
 # institutions for teaching and research use, and at non-profit research organizations. You will find that this license provides 
-# noncommercial users of the source code for CNA_combined_with_M with rights that are similar to the well-known GNU General Public License, 
-# yet it retains the possibility for the source code for CNA_combined_with_M authors to financially support the development by selling 
-#commercial licenses. In fact, if you intend to use the source code for CNA_combined_with_M in a “for-profit” environment, where research
+# noncommercial users of the source code for the GENETIC_ALGORIHM with rights that are similar to the well-known GNU General Public License, 
+# yet it retains the possibility for the source code for the GENETIC_ALGORIHM authors to financially support the development by selling 
+#commercial licenses. In fact, if you intend to use the source code for the GENETIC_ALGORIHM in a “for-profit” environment, where research
 # is conducted to develop or enhance a product, is used in a commercial service offering, or when a commercial company uses the source 
-# code for CNA_combined_with_M to participate in a research project (for example government-funded or EU-funded research projects), 
-# then you need to obtain a commercial license for the source code for CNA_combined_with_M. In that case, please contact the Author to
+# code for the GENETIC_ALGORIHM to participate in a research project (for example government-funded or EU-funded research projects), 
+# then you need to obtain a commercial license for the source code for the GENETIC_ALGORIHM. In that case, please contact the Author to
 # inquire about commercial licenses.
 # 
 # What are the rights given to noncommercial users? Similarly to GPL, you have the right to use the software, to distribute copies, to 
 # receive source code, to change the software and distribute your modifications or the modified software. Also similarly to the GPL, 
 # if you distribute verbatim or modified copies of this software, they must be distributed under this license.
 # 
-# By modeling the GPL, this license guarantees that you’re safe when using the source code for CNA_combined_with_M in your work, for 
-# teaching or research. This license guarantees that the source code for CNA_combined_with_M will remain available free of charge for 
-# nonprofit use. You can modify the source code for CNA_combined_with_M to your purposes, and you can also share your modifications. 
-# Even in the unlikely case of the authors abandoning the source code for CNA_combined_with_M entirely, this license permits anyone to 
+# By modeling the GPL, this license guarantees that you’re safe when using the source code for the GENETIC_ALGORIHM in your work, for 
+# teaching or research. This license guarantees that the source code for the GENETIC_ALGORIHM will remain available free of charge for 
+# nonprofit use. You can modify the source code for the GENETIC_ALGORIHM to your purposes, and you can also share your modifications. 
+# Even in the unlikely case of the authors abandoning the source code for the GENETIC_ALGORIHM entirely, this license permits anyone to 
 # continue developing it from the last release, and to create further releases under this license.
 # 
 # We believe that the combination of noncommercial open-source and commercial licensing will be beneficial for the whole user community, 
@@ -105,7 +40,7 @@
 # TERMS AND CONDITIONS FOR USE, COPYING, DISTRIBUTION AND MODIFICATION
 # Definitions
 # 
-# “Program” means a copy of the source code for CNA_combined_with_M, which is said to be distributed under this Academic Public License.
+# “Program” means a copy of the source code for the GENETIC_ALGORIHM, which is said to be distributed under this Academic Public License.
 # 
 # “Work based on the Program” means either the Program or any derivative work under copyright law: that is to say, a work containing the 
 # Program or a portion of it, either verbatim or with modifications and/or translated into another language. (Hereinafter, translation is 
@@ -222,253 +157,3 @@
 # END OF TERMS AND CONDITIONS
 # 
 # In case the above text differs from the license file in the source distribution, the latter is the valid one.
-
-## -------------------------------------------------LICENSE END-------------------------------------------------------------------------##
-
-## --------------------------------------------------FUNCTIONS--------------------------------------------------------------------------##
-## this is the container function, which is called externally
-genetic_algorithm <- function(data,population.size = 1000, chromosome.size = ncol(data), number.of.genes = 10,
-         mutation.rate = 0.0001,crossover.events = 1,generations = 1000,traits,
-         stats = '',iteration =  NULL){
-  
-  
-  # initial population
-  parent.population <- init_population(population.size, chromosome.size, number.of.genes,crossover.events,
-                                       stats,iteration)
-  child.population <- vector(mode="list",length=length(parent.population))
-  
-  ## the GA can be modified to intake more traits and change the fitness computations
-  ## modifications: February 18th 2019
-  ## if the variable traits contains multiple vectors, then calculate its first principal component
-  ## if not keep it the way it is
-  t <- NULL
-  if(ncol(traits)>1){
-    t <- prcomp(t(traits))$rotation[,1]
-  } else{
-    t <- traits
-  }
-  fitness <- sapply(parent.population,FUN = estimate_fitness,data=data,trait.1=t) #,
-  #trait.2=traits[,2],trait.3=traits[,3])
-  avg.fitness.pergeneration <- mean(fitness)
-  avg.fitness <- mean(avg.fitness.pergeneration)
-  if(exists('global.stats')){
-    if(is.null(iteration)){
-      global.stats <<- paste('Parent_generation,',mean(fitness),',',
-                             median(fitness),',',max(fitness),',',min(fitness),',',
-                             sd(fitness),sep="")  
-    }else{
-      global.stats <<- paste(paste('Iteration_',iteration,sep=""),
-                             ',Parent_generation,',mean(fitness),',',
-                             median(fitness),',',max(fitness),',',min(fitness),',',
-                             sd(fitness),sep="") 
-    }
-    
-  }
-  
-  for(i in 1:generations){
-    print(paste("Generation: ",i,sep=""))
-    ## uncomment to following section to create plot during run time
-    # if(i==1){
-    #     plot(y=avg.fitness.pergeneration[i],x=i,xlim=c(0,generations),ylim=c(0,1),xlab="Generations",
-    #          ylab="Average Fitness")
-    # }
-    # else{
-    #     points(y=avg.fitness.pergeneration[i],x=i)
-    # }
-    ## end section to be commented/uncommented
-    
-    ## only considering positive correlations = elite parents
-    ## negative correlations are considered lethal factor
-    # determine order
-    elite <- sort(fitness,decreasing = T)
-    elite <- elite[elite>0]
-    elite.ordered <- order(fitness,decreasing = T)
-    elite.ordered <- elite.ordered[1:length(elite)]
-    
-    # now reproduce with fitness
-    if(exists('mutation.counter')){
-      ## set it to zero
-      mutation.counter <<- 0
-    }
-    for(j in 1:length(parent.population)){
-      
-      ## only elite parents can contribute to the next generation
-      father <- sample(elite.ordered,size=1,prob=elite)
-      mother <- sample(elite.ordered,size=1,prob=elite)
-      # parents cannot be the same
-      repeat{
-        if(mother != father)
-          break
-        else
-          mother <- sample(elite.ordered,size=1,prob=elite)
-      } # end repeat
-      # reproduce
-      child.population[[j]] <- reproduce(parent.population[[father]],
-                                         parent.population[[mother]],crossover.events)
-      # mutate
-      child.population[[j]] <- mutate(child.population[[j]],mutation.rate)
-    } # end nested for
-    ## prepare output for stats
-    if(exists('global.stats')){
-      if(i>1){
-        global.stats <<- paste(global.stats,length(elite),mutation.counter,sep=",")
-        ## making the actual stats output
-        cat(global.stats,file=stats,sep='\n',append=T)
-      }
-    }
-    parent.population <- lapply(child.population,unlist)
-    
-    # determine fitness of each individual in population
-    fitness <- sapply(parent.population,FUN = estimate_fitness,data=data,trait.1=t)#,
-    # trait.2=traits[,2],trait.3=traits[,3])
-    
-    avg.fitness.pergeneration <- c(avg.fitness.pergeneration,mean(fitness))
-    avg.fitness <- mean(avg.fitness.pergeneration)
-    ## write to stats output if parameter exists
-    if(exists('global.stats')){
-      if(i==1){
-        global.stats <<- paste(global.stats,length(elite),mutation.counter,sep=",")
-        ## making the actual stats output
-        cat(global.stats,file=stats,sep='\n',append=T)
-      } 
-      if(is.null(iteration)){
-        global.stats <<- paste(paste('Generation_',i,sep=""),',',mean(fitness),',',
-                               median(fitness),',',max(fitness),',',min(fitness),',',
-                               sd(fitness),sep="")  
-      }else{
-        global.stats <<- paste(paste('Iteration_',iteration,',',sep=""),
-                               paste('Generation_',i,sep=""),',',mean(fitness),',',
-                               median(fitness),',',max(fitness),',',min(fitness),',',
-                               sd(fitness),sep="") 
-      }
-    }
-    gc()
-  } # end for
-  
-  # make a list with all the relavent information, which contains 
-  # all the individuals/chromosomes of the last population
-  last.generation <- vector(mode='list',length=4)
-  last.generation$lastpopulation <- parent.population
-  last.generation$fitness <- fitness
-  last.generation$average_fitness_per_generation <- avg.fitness.pergeneration
-  last.generation$average_fitness <- avg.fitness
-  
-  return(last.generation)
-} ## end function
-
-init_population <- function(population.size, chromosome.size, number.of.genes,crossover.events,stats,iteration){
-  
-  ## Firts, make sure there are not more genes than the size of the chromosomes
-  if(number.of.genes > chromosome.size){
-    stop("There cannot be more genes than the size of chromosomes! \n Ending program",call.=F)
-  } # end if
-  else if(population.size < 10){
-    stop("Population size should be at least 10! \n Ending program",call.=F)
-  }
-  else if(number.of.genes < 1){
-    stop("Number of genes should be at least 1! \n Ending program",call.=F)
-  }
-  else if(crossover.events < 1){
-    stop("Crossover rate should be at least 1! \n Ending program",call.=F)
-  }
-  else if(crossover.events > chromosome.size){
-    stop("Crossover rate should not exceed chromosome size! \n Ending program",call.=F)
-  }
-  else{
-    ## create the initial population
-    if(stats!=''){
-      warning('A file name for parameter stats was entered! A (large) stats file will be generated.')
-      ## create a global variable that will be available in all subroutines of the GA
-      global.stats <<- NULL
-      mutation.counter <<- NULL
-      ## print header line to file defined in parameter 'stats'
-      ## stats file is created as a comma separated value file
-      if(is.null(iteration)){
-        cat(paste('Generation,Average correlation,Median correlation,Max correlation,',
-                  'Min correlation,SD correlation,Number of elite individuals,',
-                  'Number of mutations',sep=""),file=stats,sep='\n',append=F)
-      } else{
-        if(iteration==1){
-          cat(paste('Iteration,Generation,Average correlation,Median correlation,Max correlation,',
-                    'Min correlation,SD correlation,Number of elite individuals,',
-                    'Number of mutations',sep=""),file=stats,sep='\n',append=F)
-        }
-      }
-      
-    }
-    return(lapply(1:population.size,function(x) 
-      sample(c(rep(1,number.of.genes),rep(0,chromosome.size-number.of.genes)))))
-  }
-  
-} ## end function
-
-reproduce <- function(father,mother,crossover.events){
-  ## parameter crossover.events determines the maximum number of cross over events
-  ## the actual crossover may lie anywhere between 1 and number in the parameter
-  cr <- sample(c(1:crossover.events),1)
-  ## determine where the crossover/s should occur
-  ## mother and father have the same length of chromosome
-  loci <- sort(sample(c(1:length(father)-1),cr))
-  # construct child chromosome
-  child <- father
-  for(i in (seq(1,length(loci),2))){
-    if(i<length(loci)){
-      child[loci[i]:loci[i+1]] <- mother[loci[i]:loci[i+1]] 
-    }
-    else{
-      child[loci[i]:length(child)] <- mother[loci[i]:length(mother)]
-    }
-  } # end for
-  return(child)
-} ## end function
-
-mutate <- function(chromosome,mutation.rate){
-  ## create a binary vector of size chromosome determining if and where
-  ## mutations should occur
-  mutation.loci <- sample(0:1, length(chromosome), 
-                          replace=T,prob=c(1-mutation.rate,mutation.rate))
-  number.of.mutations <- sum(mutation.loci)
-  
-  
-  if(number.of.mutations > 0){
-    chromosome[mutation.loci] <- abs(chromosome[mutation.loci]-1)
-    ## if mutation occurred increase mutation.counter
-    if(exists('mutation.counter')){
-      mutation.counter <<- mutation.counter+number.of.mutations
-    }
-  } # end if
-  return(list(chromosome))
-} ## end function
-
-estimate_fitness <- function(data,chromosome,trait.1,trait.2=NULL,trait.3=NULL){
-  # finding indeces/loci where genes are located
-  chromosome.ind <- which(chromosome==1)
-  ## no genes were in the chromsome
-  fitness <- NULL
-  if(length(chromosome.ind)==0){
-    fitness <- NA
-  }
-  else{
-    # computing eigengene
-    eigengene <- prcomp(t(data[,chromosome.ind]))$rotation[,1]
-    fitness <- cor(trait.1,eigengene)
-  }
-  ## change here if you want to modify how the fitness is extimated
-  ## e.g.
-  #cor.trait.1 <- cor(trait.1,eigengene)
-  #cor.trait.2 <- cor(trait.2,eigengene)
-  #cor.trait.3 <- cor(trait.3,eigengene)
-  #fitness <- cor.trait.1 * cor.trait.2 * -(cor.trait.3)
-  
-  ## in these cases we have a positive outcome although we don't want to
-  ## multiply fitness by -1 to negate the results
-  # if(cor.trait.1 < 0 & cor.trait.2 < 0 & cor.trait.3 < 0)
-  #     fitness <- fitness * -1
-  # else if(cor.trait.1 > 0 & cor.trait.2 < 0 & cor.trait.3 > 0)
-  #     fitness <- fitness * -1
-  # else if(cor.trait.1 < 0 & cor.trait.2 > 0 & cor.trait.3 > 0)
-  #     fitness <- fitness * -1
-  
-  return(fitness)
-} ## end function
-## --------------------------------------------------FUNCTIONS END-----------------------------------------------------------------------##
