@@ -2,8 +2,8 @@
 ## GENETIC ALGORITHM
 ## AUTHOR: David Toubiana
 ## email: dtoubiana@ucdavis.edu
-## SHORT DESCRIPTION: Using the genetic algorithm to test a set of genes which correlate the highest
-## to trait of interest
+## SHORT DESCRIPTION: Using the genetic algorithm to test a set of genes with the strongest correlation
+## to a trait of interest
 #/
 
 #/
