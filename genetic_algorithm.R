@@ -450,7 +450,7 @@ estimate_fitness <- function(data,chromosome,trait.1,trait.2=NULL,trait.3=NULL){
   }
   else{
     # computing eigengene
-    eigengene <- prcomp(t(data[,chromosome.ind]))$rotation[,1]
+    eigengene <- prcomp(t(data[,chromosome.ind]))$x[,1]
     fitness <- cor(trait.1,eigengene)
   }
   ## change here if you want to modify how the fitness is extimated
